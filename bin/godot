@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Godot 4 CLI Launcher for Git Bash / MSYS2 / WSL
+if [ -n "$GODOT_BIN" ] && [ -f "$GODOT_BIN" ]; then
+    TARGET="$GODOT_BIN"
+elif [ -f "$(dirname "$0")/../tools/godot/Godot_v4.3-stable_win64_console.exe" ]; then
+    TARGET="$(dirname "$0")/../tools/godot/Godot_v4.3-stable_win64_console.exe"
+elif [ -f "D:/vr_game_dev/tools/godot/Godot_v4.3-stable_win64_console.exe" ]; then
+    TARGET="D:/vr_game_dev/tools/godot/Godot_v4.3-stable_win64_console.exe"
+elif [ -f "D:/vr_game_dev/tools/godot/Godot_v4.3-stable_win64.exe" ]; then
+    TARGET="D:/vr_game_dev/tools/godot/Godot_v4.3-stable_win64.exe"
+else
+    echo "[ERROR] Godot executable not found in D:/vr_game_dev/tools/godot/" >&2
+    exit 1
+fi
+
+exec "$TARGET" "$@"

@@ -1,0 +1,173 @@
+﻿[
+    {
+        "Category":  "Concurrency",
+        "TestName":  "Rapid sequential burst of godot.cmd (20 iterations)",
+        "Success":  true,
+        "ExitCode":  0,
+        "DurationMs":  20399.96,
+        "Details":  "Completed 20 sequential executions of godot.cmd --version; Avg: 1020ms",
+        "ErrorOutput":  ""
+    },
+    {
+        "Category":  "Concurrency",
+        "TestName":  "High-concurrency parallel burst (10x simultaneous godot.cmd)",
+        "Success":  false,
+        "ExitCode":  1,
+        "DurationMs":  3197.94,
+        "Details":  "Spawned 10 simultaneous godot.cmd processes",
+        "ErrorOutput":  "Process 0 exit=, out=\u00274.3.stable.official.77dcf97d8\r\n\u0027; Process 1 exit=, out=\u00274.3.stable.official.77dcf97d8\r\n\u0027; Process 2 exit=, out=\u00274.3.stable.official.77dcf97d8\r\n\u0027; Process 3 exit=, out=\u00274.3.stable.official.77dcf97d8\r\n\u0027; Process 4 exit=, out=\u00274.3.stable.official.77dcf97d8\r\n\u0027; Process 5 exit=, out=\u00274.3.stable.official.77dcf97d8\r\n\u0027; Process 6 exit=, out=\u00274.3.stable.official.77dcf97d8\r\n\u0027; Process 7 exit=, out=\u00274.3.stable.official.77dcf97d8\r\n\u0027; Process 8 exit=, out=\u00274.3.stable.official.77dcf97d8\r\n\u0027; Process 9 exit=, out=\u00274.3.stable.official.77dcf97d8\r\n\u0027; "
+    },
+    {
+        "Category":  "Concurrency",
+        "TestName":  "Concurrent Godot headless VR test runners (4x same project)",
+        "Success":  false,
+        "ExitCode":  1,
+        "DurationMs":  3398.84,
+        "Details":  "Tested for project file locks, cache collisions (.godot directory)",
+        "ErrorOutput":  "Instance 0 exit=; Instance 1 exit=; Instance 2 exit=; Instance 3 exit=; "
+    },
+    {
+        "Category":  "Concurrency",
+        "TestName":  "Concurrent check_environment.ps1 -SkipBuild (4x parallel)",
+        "Success":  false,
+        "ExitCode":  1,
+        "DurationMs":  7506.78,
+        "Details":  "Tested for concurrent registry queries, script read locks, JSON serialization",
+        "ErrorOutput":  "Instance 0 failed or invalid JSON (Exit=); Instance 1 failed or invalid JSON (Exit=); Instance 2 failed or invalid JSON (Exit=); Instance 3 failed or invalid JSON (Exit=); "
+    },
+    {
+        "Category":  "Concurrency",
+        "TestName":  "Rapid sequential WebXR production builds (3 iterations)",
+        "Success":  true,
+        "ExitCode":  0,
+        "DurationMs":  17210.46,
+        "Details":  "Checked dist/ cleaning, vite asset hashing, incremental build stability",
+        "ErrorOutput":  ""
+    },
+    {
+        "Category":  "CrossShell",
+        "TestName":  "CMD: Global naked \u0027godot --version\u0027 from C:\\",
+        "Success":  true,
+        "ExitCode":  0,
+        "DurationMs":  2047.27,
+        "Details":  "Output: 4.3.stable.official.77dcf97d8",
+        "ErrorOutput":  ""
+    },
+    {
+        "Category":  "CrossShell",
+        "TestName":  "CMD: %ERRORLEVEL% propagation on engine error",
+        "Success":  true,
+        "ExitCode":  1,
+        "DurationMs":  1033.13,
+        "Details":  "Exit code: 1 (Expected non-zero on missing script)",
+        "ErrorOutput":  ""
+    },
+    {
+        "Category":  "CrossShell",
+        "TestName":  "PowerShell: Pipeline object capture from C:\\",
+        "Success":  true,
+        "ExitCode":  0,
+        "DurationMs":  617.65,
+        "Details":  "Pipeline match result: True",
+        "ErrorOutput":  ""
+    },
+    {
+        "Category":  "CrossShell",
+        "TestName":  "PowerShell: $LASTEXITCODE fidelity through godot.ps1",
+        "Success":  true,
+        "ExitCode":  1,
+        "DurationMs":  786.36,
+        "Details":  "Propagated exit code: 1",
+        "ErrorOutput":  ""
+    },
+    {
+        "Category":  "CrossShell",
+        "TestName":  "Git Bash: Invocation and stderr cleanliness of bin\\godot",
+        "Success":  false,
+        "ExitCode":  0,
+        "DurationMs":  2030.8,
+        "Details":  "Stdout: 4.3.stable.official.77dcf97d8; Stderr: /d/vr_game_dev/bin/godot: line 1: ﻿#!/usr/bin/env: No such file or directory",
+        "ErrorOutput":  "BOM corruption detected: Stderr contains \u0027/d/vr_game_dev/bin/godot: line 1: ﻿#!/usr/bin/env: No such file or directory\u0027"
+    },
+    {
+        "Category":  "CrossShell",
+        "TestName":  "Git Bash: Godot VR test runner execution via POSIX shell",
+        "Success":  true,
+        "ExitCode":  0,
+        "DurationMs":  4048.47,
+        "Details":  "ExitCode=0",
+        "ErrorOutput":  ""
+    },
+    {
+        "Category":  "PathResilience",
+        "TestName":  "Path with spaces: Project path containing spaces",
+        "Success":  true,
+        "ExitCode":  0,
+        "DurationMs":  2052.34,
+        "Details":  "Target: D:\\vr_game_dev\\tests\\.tier5_temp\\Project With Multiple Spaces",
+        "ErrorOutput":  ""
+    },
+    {
+        "Category":  "PathResilience",
+        "TestName":  "Special characters: Project path with #, @, !, \u0026, ^, ()",
+        "Success":  true,
+        "ExitCode":  0,
+        "DurationMs":  2050.85,
+        "Details":  "Target: D:\\vr_game_dev\\tests\\.tier5_temp\\VR#Proj@2026!(Test)\u0026Special^",
+        "ErrorOutput":  ""
+    },
+    {
+        "Category":  "PathResilience",
+        "TestName":  "Unicode diacritics: Path with Vietnamese characters",
+        "Success":  true,
+        "ExitCode":  0,
+        "DurationMs":  2033.94,
+        "Details":  "Target: D:\\vr_game_dev\\tests\\.tier5_temp\\DựÁn_VR_ThửNghiệm_TiếngViệt",
+        "ErrorOutput":  ""
+    },
+    {
+        "Category":  "PathResilience",
+        "TestName":  "NTFS Junction: Execution through directory link",
+        "Success":  true,
+        "ExitCode":  0,
+        "DurationMs":  2068.89,
+        "Details":  "Junction created: D:\\vr_game_dev\\tests\\.tier5_temp\\vr_junction_link -\u003e D:\\vr_game_dev\\projects\\vr_hello_world",
+        "ErrorOutput":  ""
+    },
+    {
+        "Category":  "PathResilience",
+        "TestName":  "Deeply nested directory (\u003e150 characters)",
+        "Success":  true,
+        "ExitCode":  0,
+        "DurationMs":  2047.46,
+        "Details":  "Path length: 143 characters",
+        "ErrorOutput":  ""
+    },
+    {
+        "Category":  "PathResilience",
+        "TestName":  "check_environment.ps1 with explicit ProjectRoot",
+        "Success":  true,
+        "ExitCode":  0,
+        "DurationMs":  4073.1,
+        "Details":  "Explicit ProjectRoot: D:\\vr_game_dev",
+        "ErrorOutput":  ""
+    },
+    {
+        "Category":  "ProcessStability",
+        "TestName":  "Process leak audit: No lingering Godot engine processes",
+        "Success":  false,
+        "ExitCode":  1,
+        "DurationMs":  26.21,
+        "Details":  "Active Godot processes count: 2",
+        "ErrorOutput":  "Found active lingering Godot processes: 34328, 14584"
+    },
+    {
+        "Category":  "ProcessStability",
+        "TestName":  "File lock audit: Critical project source files are unlocked",
+        "Success":  true,
+        "ExitCode":  0,
+        "DurationMs":  15.21,
+        "Details":  "Checked 5 critical project files for exclusive locks",
+        "ErrorOutput":  ""
+    }
+]

@@ -1,0 +1,107 @@
+[gd_scene load_steps=14 format=3 uid="uid://bvyg7xw55y67u"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_maingd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
+sky_top_color = Color(0.384314, 0.537255, 0.701961, 1)
+sky_horizon_color = Color(0.662745, 0.721569, 0.780392, 1)
+ground_bottom_color = Color(0.180392, 0.180392, 0.2, 1)
+ground_horizon_color = Color(0.662745, 0.721569, 0.780392, 1)
+
+[sub_resource type="Sky" id="Sky_sky"]
+sky_material = SubResource("ProceduralSkyMaterial_sky")
+
+[sub_resource type="Environment" id="Environment_world"]
+background_mode = 2
+sky = SubResource("Sky_sky")
+ambient_light_source = 3
+ambient_light_color = Color(0.3, 0.3, 0.35, 1)
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(20, 0.2, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_floor"]
+albedo_color = Color(0.22, 0.24, 0.28, 1)
+roughness = 0.85
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
+size = Vector3(20, 0.2, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cube"]
+size = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cube"]
+albedo_color = Color(0.15, 0.65, 0.95, 1)
+metallic = 0.2
+roughness = 0.3
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cube"]
+size = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="SphereMesh" id="SphereMesh_hand"]
+radius = 0.04
+height = 0.08
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hand_left"]
+albedo_color = Color(0.9, 0.25, 0.2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hand_right"]
+albedo_color = Color(0.2, 0.8, 0.3, 1)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_maingd")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_world")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.353553, 0.353553, 0, 0.707107, 0.707107, -0.5, -0.612372, 0.612372, 0, 6, 0)
+light_energy = 1.1
+shadow_enabled = true
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+
+[node name="FloorMesh" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.150762, 0.548761, -0.259246)
+mesh = SubResource("BoxMesh_floor")
+surface_material_override/0 = SubResource("StandardMaterial3D_floor")
+
+[node name="FloorCollision" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_floor")
+
+[node name="ColoredCube" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -2)
+
+[node name="CubeMesh" type="MeshInstance3D" parent="ColoredCube"]
+mesh = SubResource("BoxMesh_cube")
+surface_material_override/0 = SubResource("StandardMaterial3D_cube")
+
+[node name="CubeCollision" type="CollisionShape3D" parent="ColoredCube"]
+shape = SubResource("BoxShape3D_cube")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="LeftController" type="XRController3D" parent="XROrigin3D"]
+tracker = &"left_hand"
+pose = &"aim"
+
+[node name="HandMesh" type="MeshInstance3D" parent="XROrigin3D/LeftController"]
+mesh = SubResource("SphereMesh_hand")
+surface_material_override/0 = SubResource("StandardMaterial3D_hand_left")
+
+[node name="RightController" type="XRController3D" parent="XROrigin3D"]
+tracker = &"right_hand"
+pose = &"aim"
+
+[node name="HandMesh" type="MeshInstance3D" parent="XROrigin3D/RightController"]
+mesh = SubResource("SphereMesh_hand")
+surface_material_override/0 = SubResource("StandardMaterial3D_hand_right")
+
+[node name="DesktopCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)

@@ -1,0 +1,6 @@
+tools/
+*.exe
+*.zip
+node_modules/
+.agents/
+projects/webxr_hello_world/node_modules/
